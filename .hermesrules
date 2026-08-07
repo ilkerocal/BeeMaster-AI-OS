@@ -60,6 +60,11 @@
 # Tüm modüller aynı Digital Twin'i okur. Modül kendi verisini TUTAMAZ.
 # 5.12 Sağlık Puanı: Ana Arı %20, Yavru %20, Bal %15, Hastalık %15...
 
+# KARAR MOTORU (Bölüm 6):
+# 7 katman: Veri Kontrol → Bağlam → İlişki → Risk → Tahmin → Öneri → Öğrenme
+# ASLA kesin hüküm vermez. Düşük veri = düşük güven. Karar arıcınındır.
+# Yetersiz/çelişkili veride karar ÜRETMEZ. Kullanıcıdan ek bilgi ister.
+
 # ═══════════════════════════════════════
 # GELİŞTİRME KURALLARI
 # ═══════════════════════════════════════
