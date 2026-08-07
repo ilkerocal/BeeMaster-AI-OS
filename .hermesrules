@@ -55,6 +55,11 @@
 # Geçmişte ne oldu? Bundan sonra ne olacak? Biri eksikse ekran TAMAM DEĞİL.
 # Yasak: 1000+ satır CSS/JS, HTML kopyalama, inline logic, inline style.
 
+# DİJİTAL İKİZ (Bölüm 5):
+# Gerçek ürün ekranlar değil, Dijital İkiz'dir. 7 değiştirilemez kural.
+# Tüm modüller aynı Digital Twin'i okur. Modül kendi verisini TUTAMAZ.
+# 5.12 Sağlık Puanı: Ana Arı %20, Yavru %20, Bal %15, Hastalık %15...
+
 # ═══════════════════════════════════════
 # GELİŞTİRME KURALLARI
 # ═══════════════════════════════════════
