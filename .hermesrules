@@ -44,6 +44,12 @@
 
 # TOKEN ZORUNLU: Renk, gölge, boşluk asla sabit değer yazılmaz. var(--token) kullan.
 
+# BİLEŞEN KÜTÜPHANESİ (BCL Bölüm 3.18):
+# Yeni bileşen oluşturmadan ÖNCE 5 soru:
+# 1-Aynısı var mı? 2-Genişletilebilir mi? 3-Gerçekten gerekli mi?
+# 4-BDS'ye uygun mu? 5-En az 3 sayfada kullanılacak mı?
+# Herhangi birine HAYIR → oluşturma. Mevcut COMP'u kullan.
+
 # ═══════════════════════════════════════
 # GELİŞTİRME KURALLARI
 # ═══════════════════════════════════════
