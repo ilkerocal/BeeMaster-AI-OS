@@ -254,6 +254,71 @@ Bu puan şu faktörlerden oluşur:
 
 ---
 
+## 5.12A Davranış Profili
+
+Her koloni zaman içinde kendine özgü bir **davranış profili** oluşturur. Bu profil, geçmiş verilere dayanarak sürekli güncellenir.
+
+| Özellik | Veri Kaynağı |
+|----------|-------------|
+| Erken gelişme eğilimi | İlkbahar nüfus artış hızı |
+| Oğul verme eğilimi | Geçmiş oğul olayları, ana arı yaşı |
+| Bal depolama davranışı | Mevsimsel bal stoğu değişimi |
+| Polen toplama yoğunluğu | Polen hücresi yüzdesi trendi |
+| Savunmacılık gözlemleri | Kullanıcı notları, mizaç kayıtları |
+| Mevsimsel değişim paterni | Yıllık döngü karşılaştırması |
+
+## 5.12B Çerçeve Haritası
+
+Koloninin tüm çerçeveleri Dijital İkiz içinde temsil edilir. Her çerçeve için: son tarama tarihi, bal oranı (%), polen oranı (%), yavru alanı (%), geçmiş değişimler saklanır. Bu sayede zaman içinde aynı çerçevenin gelişimi izlenebilir. (Bölüm 7.8: Değişim Analizi)
+
+## 5.12C Tahmin Hafızası
+
+Sistem yalnızca geçmişi değil, **geçmiş tahminlerini de saklar.** Örnek:
+
+```
+Tahmin (15 Nisan): 15 gün içinde oğul riski %70
+Gerçek sonuç (30 Nisan): Oğul gerçekleşmedi
+→ Model kalibrasyonu için kaydedilir
+```
+
+Bu karşılaştırmalar modelin geliştirilmesine katkı sağlar. (Bölüm 10.7: Sonuçların Takibi, Bölüm 12.13: Öğrenen Simülasyon)
+
+## 5.12D Dijital İkiz Güncelleme Süreci
+
+Her yeni veri şu akıştan geçer:
+
+```
+Yeni Veri → Doğrulama → İlgili DI Bulunur → Olay Kaydı → AI Analizi → Profil Güncellenir → Tahminler Yenilenir
+```
+
+Bu süreç tutarlı bir Dijital İkiz yapısı sağlar. (Bölüm 11.14: Olay Tabanlı Entegrasyon)
+
+## 5.12E Sürüm Geçmişi (DI Snapshot)
+
+Dijital İkiz yalnızca son durumu değil, **geçmiş sürümlerini de saklar.** Kullanıcı belirli bir tarihteki koloni durumunu, o günkü AI değerlendirmesini ve kullanılan model sürümünü görebilir. (KURAL-0002, Bölüm 10.10: Bilgi Tabanı Sürümleme)
+
+## 5.12F Karşılaştırmalı Analiz
+
+Sistem aynı koloniyi farklı dönemlerde karşılaştırabilir:
+
+```
+İlkbahar 2026 vs İlkbahar 2027 vs İlkbahar 2028
+```
+
+Karşılaştırmalar: gelişim hızı, bal üretimi, hastalık sıklığı, ana arı performansı üzerinden yapılır.
+
+## 5.12G Çoklu AI Entegrasyonu
+
+Dijital İkiz tüm uzman ajanlardan veri alır (Bölüm 9):
+
+```
+Vision Agent → Disease Agent → Prediction Agent → Learning Agent → Digital Twin
+```
+
+Her ajan aynı Dijital İkiz üzerinde çalışır; ancak kendi uzmanlık alanındaki bilgileri günceller. (KURAL-0006)
+
+---
+
 ## 5.13 Dijital İkiz Zaman Çizelgesi
 
 Koloninin tüm geçmişi tek bir zaman çizelgesinde görülebilir:
