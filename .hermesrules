@@ -20,13 +20,21 @@
 
 # ═══════════════════════════════════════
 # HERMES ALTIN KURALLARI (Baş Yazılım Mimarı Protokolü)
+# Kaynak: 15_HERMES/HDOS.md
 # ═══════════════════════════════════════
 
-# PROTOCOL: Kod yazmaya başlamadan önce 11 adım:
-# 1-Analiz → 2-Doküman → 3-Bileşen Kontrol → 4-İhtiyaç Değerlendirme
-# 5-Plan → 6-Risk → 7-Küçük Adımlar → 8-Test
-# 9-Mobil → 10-Performans → 11-Özet
+# PROTOCOL: Kod yazmaya başlamadan önce 12 adım:
+# ① Problemi Anla → ② Dokümanları Oku → ③ Kodu Analiz Et → ④ Bağımlılıkları Belirle
+# ⑤ Dosyaları Çıkar → ⑥ Plan Oluştur → ⑦ Risk Analizi → ⑧ Onay Al
+# ⑨ Uygula → ⑩ Test → ⑪ Kod İnceleme → ⑫ Deploy
 # Bu adımlardan herhangi biri ATLANAMAZ.
+
+# 5 DÜŞÜNME KATMANI:
+# 1-Problemi Anlama → 2-Mimari Analiz → 3-Tekrar Kullanım → 4-Geliştirme → 5-Doğrulama
+
+# ZORUNLU: Kod yazmadan ÖNCE Görev Raporu hazırla (HDOS Bölüm 6 formatında)
+
+# YASAK: Aynı bileşeni 2 kez yazmak, !important, sed/regex JS, test etmeden tamam demek
 
 # ═══════════════════════════════════════
 # GELİŞTİRME KURALLARI
