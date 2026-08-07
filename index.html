@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐝 BDAOS — BeeMaster AI Development OS</title>
+<style>
+:root {
+  --bg-base: #0B1220;
+  --bg-card: #131D31;
+  --bg-elevated: #1A2744;
+  --bg-hover: #1F3050;
+  --text-primary: #E8EDF5;
+  --text-secondary: #8895B3;
+  --text-tertiary: #5A6785;
+  --amber: #f59e0b;
+  --amber-dark: #d97706;
+  --amber-glow: rgba(245,158,11,0.15);
+  --success: #10b981;
+  --danger: #ef4444;
+  --info: #3b82f6;
+  --warning: #f59e0b;
+  --border: #1E2D4A;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 12px rgba(0,0,0,0.25);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.3);
+  --glow: 0 0 20px rgba(245,158,11,0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  background-image: radial-gradient(ellipse at top, #131D31 0%, #0B1220 70%);
+}
+
+/* Header */
+.header {
+  background: rgba(10,17,32,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.logo-icon { font-size: 1.5rem; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.badge-ai {
+  background: rgba(16,185,129,0.15);
+  color: var(--success);
+}
+
+.badge-active {
+  background: rgba(245,158,11,0.12);
+  color: var(--amber);
+}
+
+.stats-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.stat-value {
+  font-weight: 700;
+  color: var(--amber);
+  font-size: 1rem;
+}
+
+/* Main */
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 32px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.hero-link-primary {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #0B1220;
+  font-weight: 600;
+  box-shadow: var(--glow);
+}
+.hero-link-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+.hero-link-ghost {
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+.hero-link-ghost:hover { border-color: var(--amber); color: var(--amber); }
+
+/* Section */
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  margin-bottom: 20px;
+}
+
+/* Module Grid */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.module-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: all 0.2s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.module-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(245,158,11,0.2);
+}
+
+.module-card.completed { border-left: 3px solid var(--success); }
+.module-card.planned { border-left: 3px solid var(--border); opacity: 0.7; }
+
+.module-number {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.module-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.module-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.module-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.module-files {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  background: rgba(255,255,255,0.03);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.status-dot.green { background: var(--success); box-shadow: 0 0 8px rgba(16,185,129,0.4); }
+.status-dot.amber { background: var(--amber); }
+.status-dot.gray { background: var(--text-tertiary); }
+
+/* Rules Section */
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.rule-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.rule-id {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 4px;
+  font-family: 'SF Mono', Consolas, monospace;
+}
+
+.rule-text {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Design Tokens Preview */
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.token-swatch {
+  height: 60px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: flex-end;
+  padding: 8px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  font-family: 'SF Mono', Consolas, monospace;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 32px;
+  border-top: 1px solid var(--border);
+  color: var(--text-tertiary);
+  font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.5rem; }
+  .header { padding: 12px 16px; }
+  .main { padding: 16px; }
+  .stats-row { display: none; }
+  .module-grid { grid-template-columns: 1fr; }
+  .rules-grid { grid-template-columns: 1fr; }
+  .logo span:last-child { display: none; }
+}
+
+/* AI Pulse */
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,0.4)} 50%{box-shadow:0 0 0 6px rgba(16,185,129,0)} }
+.ai-dot { width:8px;height:8px;border-radius:50%;background:var(--success);animation:pulse 2s infinite;display:inline-block;margin-right:4px; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="logo">
+    <span class="logo-icon">🐝</span>
+    <span>BeeMaster AI Development OS</span>
+    <span class="badge badge-ai">v1.0</span>
+  </div>
+  <div class="stats-row">
+    <div class="stat-item">
+      <span class="ai-dot"></span>
+      <span>Modül: <span class="stat-value">18/20</span></span>
+    </div>
+    <div class="stat-item">📄 <span>Dosya: <span class="stat-value">48</span></span></div>
+    <div class="stat-item">📏 <span>Kural: <span class="stat-value">15</span></span></div>
+    <div class="stat-item">🧩 <span>Bileşen: <span class="stat-value">15</span></span></div>
+    <span class="badge badge-active">● Canlı</span>
+  </div>
+</header>
+
+<main class="main">
+
+<!-- Hero -->
+<section class="hero">
+  <h1>🐝 BeeMaster AI Development OS</h1>
+  <p>AI'lar için işletim sistemi. BeeMaster AI projesinde çalışan tüm AI agent'ların uyması gereken standartları, kuralları ve karar çerçevelerini içerir.</p>
+  <div class="hero-links">
+    <a href="https://github.com/ilkerocal/BeeMaster-AI-OS" class="hero-link hero-link-primary" target="_blank">📁 GitHub Repo</a>
+    <a href="https://beemaster-ai.vercel.app" class="hero-link hero-link-ghost" target="_blank">🐝 BeeMaster AI App</a>
+    <a href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/.hermesrules" class="hero-link hero-link-ghost" target="_blank">📋 Kuralları Gör</a>
+  </div>
+</section>
+
+<!-- Modules -->
+<h2 class="section-title">📦 Modüller</h2>
+<p class="section-subtitle">20 modül, her biri BeeMaster AI geliştirme sürecinin bir parçasını standartlaştırır.</p>
+
+<div class="module-grid" id="moduleGrid"></div>
+
+<!-- Rules -->
+<h2 class="section-title">📋 Temel Kurallar (15)</h2>
+<p class="section-subtitle">Hermes'in Baş Yazılım Mimarı olarak uyması gereken kurallar.</p>
+
+<div class="rules-grid" id="rulesGrid"></div>
+
+<!-- Design Tokens -->
+<h2 class="section-title">🎨 Tasarım Token'ları</h2>
+<p class="section-subtitle">BeeMaster AI v6 Dark Theme renk paleti.</p>
+
+<div class="token-grid" id="tokenGrid"></div>
+
+</main>
+
+<footer class="footer">
+  <p>🐝 BeeMaster AI Development OS v1.0 · <a href="https://github.com/ilkerocal/BeeMaster-AI-OS" style="color:var(--amber)" target="_blank">github.com/ilkerocal/BeeMaster-AI-OS</a></p>
+  <p style="margin-top:4px">"Kod yazmadan önce düşün. Plan yap. Onay al. Sonra uygula." — RULE-0001</p>
+</footer>
+
+<script>
+// Module Data
+const MODULES = [
+  { id:'00', name:'Master Blueprint', desc:'Şirket felsefesi, ürün vizyonu, geliştirme prensipleri, karar çerçevesi', files:5, status:'completed', icon:'🧭' },
+  { id:'01', name:'Design System', desc:'Renkler, tipografi, spacing, ikonlar, gölgeler, animasyonlar, 11 bileşen', files:20, status:'completed', icon:'🎨' },
+  { id:'02', name:'Component Library', desc:'COMP-0001..0015 — Button, Card, Modal, Hive Card, Disease Card...', files:15, status:'completed', icon:'🧩' },
+  { id:'03', name:'Architecture', desc:'Sistem mimarisi, veri akışı, state yönetimi, 4 temel mimari karar', files:2, status:'completed', icon:'🏗️' },
+  { id:'04', name:'Frontend', desc:'HTML, CSS, JS yazım standartları, PWA gereksinimleri', files:3, status:'completed', icon:'💻' },
+  { id:'05', name:'Backend', desc:'Supabase yapılandırması, auth, RLS, offline-first strateji', files:1, status:'completed', icon:'🗄️' },
+  { id:'06', name:'Database', desc:'PostgreSQL şema, 10 tablo, indexler, migration kuralları', files:1, status:'completed', icon:'🗃️' },
+  { id:'07', name:'AI Engine', desc:'Öneri sistemi, güven skorlaması, kanıt takibi', files:1, status:'completed', icon:'🤖' },
+  { id:'08', name:'Digital Twin', desc:'Dijital ikiz modeli, senkronizasyon, görselleştirme', files:0, status:'planned', icon:'👥' },
+  { id:'09', name:'Frame Scanner', desc:'Çerçeve tarayıcı, görüntü işleme, tespit modelleri', files:0, status:'planned', icon:'📸' },
+  { id:'10', name:'Disease Engine', desc:'Hastalık veritabanı, belirti denetleyici, tedavi rehberi', files:0, status:'completed', icon:'🦠' },
+  { id:'11', name:'API', desc:'REST endpointleri, auth endpointleri, hata kodları', files:0, status:'planned', icon:'🔌' },
+  { id:'12', name:'Testing', desc:'Playwright E2E, birim testleri, visual QA protokolü', files:1, status:'completed', icon:'🧪' },
+  { id:'13', name:'Debugging', desc:'Hata ayıklama stratejisi, sık hatalar, çözümler', files:1, status:'completed', icon:'🐛' },
+  { id:'14', name:'GitHub', desc:'Branch stratejisi, commit formatı, CI/CD', files:1, status:'completed', icon:'🔄' },
+  { id:'15', name:'Hermes', desc:'Hermes yapılandırması, skill rehberi, düşünme süreci', files:1, status:'completed', icon:'🧠' },
+  { id:'16', name:'Prompts', desc:'Standart prompt şablonları (feature, bug fix, deploy)', files:1, status:'completed', icon:'📝' },
+  { id:'17', name:'Skills', desc:'Hermes skill kütüphanesi ve şablonları', files:0, status:'planned', icon:'🔧' },
+  { id:'18', name:'Templates', desc:'Sayfa, modül, bileşen, skill kod şablonları', files:1, status:'completed', icon:'📐' },
+  { id:'19', name:'Checklists', desc:'Deploy öncesi/sonrası kontrol listeleri', files:1, status:'completed', icon:'✅' },
+  { id:'20', name:'Releases', desc:'Sürüm notları, changelog, yol haritası', files:1, status:'completed', icon:'📋' }
+];
+
+// Rules
+const RULES = [
+  { id:'RULE-0001', text:'Never change code immediately. Analyze first. Create a plan. Wait for approval.' },
+  { id:'RULE-0002', text:'Never create duplicate CSS. Search existing components first. Reuse if possible.' },
+  { id:'RULE-0003', text:'Never modify more than one feature in a single commit.' },
+  { id:'RULE-0004', text:'Never write HTML before checking the Design System.' },
+  { id:'RULE-0005', text:'Never invent UI. Use the Component Library.' },
+  { id:'RULE-0006', text:'Every screen must strengthen the Digital Twin.' },
+  { id:'RULE-0007', text:'Every AI recommendation must contain confidence, reasoning, evidence.' },
+  { id:'RULE-0008', text:'Always test with Playwright before declaring "done".' },
+  { id:'RULE-0009', text:'All user-facing text must be Turkish.' },
+  { id:'RULE-0010', text:'Never use sed/replace on JavaScript files.' },
+  { id:'RULE-0011', text:'Cache-bust version must increment on every deploy.' },
+  { id:'RULE-0012', text:'Never hardcode credentials.' },
+  { id:'RULE-0013', text:'Every page must work offline-first.' },
+  { id:'RULE-0014', text:'Mobile-first responsive design. Test at 375×812.' },
+  { id:'RULE-0015', text:'Never skip the Visual QA checklist before deploy.' }
+];
+
+// Colors
+const TOKENS = [
+  { name:'Base', hex:'#0B1220' },
+  { name:'Card', hex:'#131D31' },
+  { name:'Elevated', hex:'#1A2744' },
+  { name:'Hover', hex:'#1F3050' },
+  { name:'Primary', hex:'#f59e0b' },
+  { name:'Primary Dark', hex:'#d97706' },
+  { name:'Success', hex:'#10b981' },
+  { name:'Danger', hex:'#ef4444' },
+  { name:'Info', hex:'#3b82f6' },
+  { name:'Text', hex:'#E8EDF5' },
+  { name:'Text Sec.', hex:'#8895B3' },
+  { name:'Border', hex:'#1E2D4A' }
+];
+
+// Render Modules
+function renderModules() {
+  const grid = document.getElementById('moduleGrid');
+  grid.innerHTML = MODULES.map(m => `
+    <div class="module-card ${m.status}" onclick="window.open('https://github.com/ilkerocal/BeeMaster-AI-OS/tree/main/${m.id}_${m.name.replace(/ /g,'_').toUpperCase()}','_blank')" title="GitHub'da aç">
+      <div class="module-number">MODÜL ${m.id}</div>
+      <div class="module-name">
+        <span>${m.icon}</span>
+        <span>${m.name}</span>
+        <span class="status-dot ${m.status==='completed'?'green':'gray'}"></span>
+      </div>
+      <div class="module-desc">${m.desc}</div>
+      <div class="module-meta">
+        <span class="module-files">📄 ${m.files} dosya</span>
+        <span class="module-files">${m.status==='completed'?'✅ Tamamlandı':'📋 Planlandı'}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Render Rules
+function renderRules() {
+  document.getElementById('rulesGrid').innerHTML = RULES.map(r => `
+    <div class="rule-card">
+      <div class="rule-id">${r.id}</div>
+      <div class="rule-text">${r.text}</div>
+    </div>
+  `).join('');
+}
+
+// Render Tokens
+function renderTokens() {
+  document.getElementById('tokenGrid').innerHTML = TOKENS.map(t => `
+    <div class="token-swatch" style="background:${t.hex};color:${t.hex==='#0B1220'||t.hex==='#131D31'?'#fff':'#0B1220'}">
+      <span>${t.name}<br>${t.hex}</span>
+    </div>
+  `).join('');
+}
+
+// Init
+renderModules();
+renderRules();
+renderTokens();
+
+// Update time
+const now = new Date();
+document.querySelector('.badge-active').innerHTML = '● Canlı · ' + now.toLocaleDateString('tr-TR');
+</script>
+</body>
+</html>
