@@ -50,6 +50,11 @@
 # 4-BDS'ye uygun mu? 5-En az 3 sayfada kullanılacak mı?
 # Herhangi birine HAYIR → oluşturma. Mevcut COMP'u kullan.
 
+# FRONTEND MİMARİSİ (Bölüm 4):
+# Her sayfa 4 soruya cevap vermeli: Ne öğreniyorum? AI ne öneriyor?
+# Geçmişte ne oldu? Bundan sonra ne olacak? Biri eksikse ekran TAMAM DEĞİL.
+# Yasak: 1000+ satır CSS/JS, HTML kopyalama, inline logic, inline style.
+
 # ═══════════════════════════════════════
 # GELİŞTİRME KURALLARI
 # ═══════════════════════════════════════
