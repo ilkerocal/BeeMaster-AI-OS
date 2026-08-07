@@ -6,514 +6,319 @@
 <title>🐝 BDAOS — BeeMaster AI Development OS</title>
 <style>
 :root {
-  --bg-base: #0B1220;
-  --bg-card: #131D31;
-  --bg-elevated: #1A2744;
-  --bg-hover: #1F3050;
-  --text-primary: #E8EDF5;
-  --text-secondary: #8895B3;
-  --text-tertiary: #5A6785;
+  --bg: #080d16;
+  --bg2: #0d1421;
+  --card: #111827;
+  --card2: #161e2e;
+  --border: #1e2d45;
   --amber: #f59e0b;
-  --amber-dark: #d97706;
-  --amber-glow: rgba(245,158,11,0.15);
-  --success: #10b981;
-  --danger: #ef4444;
-  --info: #3b82f6;
-  --warning: #f59e0b;
-  --border: #1E2D4A;
-  --radius: 12px;
-  --radius-sm: 8px;
-  --shadow: 0 4px 12px rgba(0,0,0,0.25);
-  --shadow-lg: 0 8px 24px rgba(0,0,0,0.3);
-  --glow: 0 0 20px rgba(245,158,11,0.15);
+  --amber2: #fbbf24;
+  --green: #10b981;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --purple: #8b5cf6;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #64748b;
+  --radius: 16px;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin:0; padding:0; box-sizing:border-box; }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--bg-base);
-  color: var(--text-primary);
+  background: var(--bg);
+  color: var(--text);
   min-height: 100vh;
-  background-image: radial-gradient(ellipse at top, #131D31 0%, #0B1220 70%);
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(245,158,11,0.06), transparent),
+    radial-gradient(ellipse 40% 60% at 80% 50%, rgba(16,185,129,0.03), transparent);
 }
 
-/* Header */
-.header {
-  background: rgba(10,17,32,0.8);
+header {
+  background: rgba(8,13,22,0.85);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
-  padding: 16px 24px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
+  padding: 16px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.logo { display:flex; align-items:center; gap:12px; font-size:1.2rem; font-weight:700; letter-spacing:-0.3px; }
+.logo span:first-child { font-size:1.6rem; }
+.badge { font-size:0.65rem; padding:3px 10px; border-radius:99px; font-weight:600; }
+.badge-live { background:rgba(16,185,129,0.12); color:var(--green); }
+.badge-ai { background:rgba(245,158,11,0.12); color:var(--amber); }
+
+.stats { display:flex; gap:24px; align-items:center; }
+.stat { text-align:center; }
+.stat-val { font-size:1.5rem; font-weight:800; background:linear-gradient(135deg,#f59e0b,#fbbf24); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.stat-label { font-size:0.7rem; color:var(--text3); text-transform:uppercase; letter-spacing:0.5px; }
+
+main { max-width:1400px; margin:0 auto; padding:32px 24px; }
+
+.hero { text-align:center; padding:48px 20px 40px; }
+.hero h1 { font-size:2.8rem; font-weight:800; letter-spacing:-1px; margin-bottom:8px; }
+.hero h1 span { background:linear-gradient(135deg,#f59e0b,#fbbf24,#f59e0b); background-size:200%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:shimmer 3s ease infinite; }
+@keyframes shimmer { 0%,100%{background-position:0%} 50%{background-position:100%} }
+.hero p { color:var(--text2); max-width:550px; margin:0 auto 20px; font-size:0.95rem; line-height:1.5; }
+.hero-links { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.hero-links a { padding:10px 20px; border-radius:99px; font-size:0.82rem; font-weight:600; text-decoration:none; transition:all 0.2s; }
+.btn-primary { background:linear-gradient(135deg,#f59e0b,#d97706); color:#080d16; box-shadow:0 0 24px rgba(245,158,11,0.2); }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 32px rgba(245,158,11,0.3); }
+.btn-ghost { border:1px solid var(--border); color:var(--text2); }
+.btn-ghost:hover { border-color:var(--amber); color:var(--amber); }
+
+.section { margin-bottom:48px; }
+.section-title { font-size:1.1rem; font-weight:700; margin-bottom:4px; display:flex; align-items:center; gap:8px; }
+.section-sub { font-size:0.8rem; color:var(--text3); margin-bottom:20px; }
+
+.modules { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:14px; }
+.module {
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  padding:20px; transition:all 0.25s; cursor:pointer; position:relative; overflow:hidden;
+  text-decoration:none; color:inherit; display:block;
+}
+.module:hover { transform:translateY(-3px); border-color:rgba(245,158,11,0.3); box-shadow:0 8px 32px rgba(0,0,0,0.3); }
+.module::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; border-radius:3px 3px 0 0; }
+.module.constitution::before { background:linear-gradient(90deg,#f59e0b,#ef4444); }
+.module.core::before { background:linear-gradient(90deg,#f59e0b,#8b5cf6); }
+.module.design::before { background:linear-gradient(90deg,#8b5cf6,#3b82f6); }
+.module.ai::before { background:linear-gradient(90deg,#10b981,#f59e0b); }
+.module.data::before { background:linear-gradient(90deg,#3b82f6,#10b981); }
+.module.ops::before { background:linear-gradient(90deg,#64748b,#f59e0b); }
+.module.vision::before { background:linear-gradient(90deg,#8b5cf6,#ec4899); }
+
+.module-num { font-size:0.65rem; color:var(--amber); font-weight:700; margin-bottom:6px; text-transform:uppercase; letter-spacing:1px; }
+.module-name { font-size:1rem; font-weight:700; margin-bottom:4px; display:flex; align-items:center; gap:8px; }
+.module-name .icon { font-size:1.3rem; }
+.module-desc { font-size:0.8rem; color:var(--text2); line-height:1.4; margin-bottom:12px; }
+.module-tags { display:flex; gap:6px; flex-wrap:wrap; }
+.module-tags span { font-size:0.65rem; padding:2px 8px; border-radius:99px; background:rgba(255,255,255,0.04); color:var(--text3); }
+
+.timeline { display:flex; gap:2px; margin-bottom:40px; }
+.timeline-dot { flex:1; height:4px; border-radius:2px; }
+.timeline-dot.done { background:var(--green); }
+.timeline-dot.done2 { background:var(--amber); }
+.timeline-dot.future { background:var(--border); }
+
+footer { text-align:center; padding:32px; border-top:1px solid var(--border); color:var(--text3); font-size:0.75rem; }
+footer a { color:var(--amber); text-decoration:none; }
+
+@media(max-width:768px) {
+  header { padding:12px 16px; }
+  .stats { display:none; }
+  main { padding:20px 12px; }
+  .hero h1 { font-size:1.6rem; }
+  .modules { grid-template-columns:1fr; }
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.logo-icon { font-size: 1.5rem; }
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 10px;
-  border-radius: 9999px;
-  font-size: 0.7rem;
-  font-weight: 600;
-}
-
-.badge-ai {
-  background: rgba(16,185,129,0.15);
-  color: var(--success);
-}
-
-.badge-active {
-  background: rgba(245,158,11,0.12);
-  color: var(--amber);
-}
-
-.stats-row {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-}
-
-.stat-value {
-  font-weight: 700;
-  color: var(--amber);
-  font-size: 1rem;
-}
-
-/* Main */
-.main {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 24px;
-}
-
-/* Hero */
-.hero {
-  text-align: center;
-  padding: 40px 20px;
-  margin-bottom: 32px;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 8px;
-  background: linear-gradient(135deg, #f59e0b, #fbbf24);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero p {
-  color: var(--text-secondary);
-  font-size: 1.1rem;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.hero-links {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-.hero-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: var(--radius-sm);
-  font-size: 0.85rem;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.hero-link-primary {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #0B1220;
-  font-weight: 600;
-  box-shadow: var(--glow);
-}
-.hero-link-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
-
-.hero-link-ghost {
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-}
-.hero-link-ghost:hover { border-color: var(--amber); color: var(--amber); }
-
-/* Section */
-.section-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.section-subtitle {
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-  margin-bottom: 20px;
-}
-
-/* Module Grid */
-.module-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-  margin-bottom: 40px;
-}
-
-.module-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: var(--radius);
-  padding: 20px;
-  transition: all 0.2s;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.module-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(245,158,11,0.2);
-}
-
-.module-card.completed { border-left: 3px solid var(--success); }
-.module-card.planned { border-left: 3px solid var(--border); opacity: 0.7; }
-
-.module-number {
-  font-size: 0.7rem;
-  color: var(--text-tertiary);
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.module-name {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 4px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.module-desc {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
-  margin-bottom: 12px;
-}
-
-.module-meta {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.module-files {
-  font-size: 0.7rem;
-  color: var(--text-tertiary);
-  background: rgba(255,255,255,0.03);
-  padding: 3px 8px;
-  border-radius: 4px;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: inline-block;
-}
-.status-dot.green { background: var(--success); box-shadow: 0 0 8px rgba(16,185,129,0.4); }
-.status-dot.amber { background: var(--amber); }
-.status-dot.gray { background: var(--text-tertiary); }
-
-/* Rules Section */
-.rules-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 12px;
-  margin-bottom: 40px;
-}
-
-.rule-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 16px;
-}
-
-.rule-id {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--amber);
-  margin-bottom: 4px;
-  font-family: 'SF Mono', Consolas, monospace;
-}
-
-.rule-text {
-  font-size: 0.85rem;
-  color: var(--text-primary);
-  font-weight: 500;
-}
-
-/* Design Tokens Preview */
-.token-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 8px;
-  margin-bottom: 40px;
-}
-
-.token-swatch {
-  height: 60px;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: flex-end;
-  padding: 8px;
-  font-size: 0.65rem;
-  font-weight: 600;
-  font-family: 'SF Mono', Consolas, monospace;
-}
-
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 32px;
-  border-top: 1px solid var(--border);
-  color: var(--text-tertiary);
-  font-size: 0.8rem;
-}
-
-/* Responsive */
-@media (max-width: 640px) {
-  .hero h1 { font-size: 1.5rem; }
-  .header { padding: 12px 16px; }
-  .main { padding: 16px; }
-  .stats-row { display: none; }
-  .module-grid { grid-template-columns: 1fr; }
-  .rules-grid { grid-template-columns: 1fr; }
-  .logo span:last-child { display: none; }
-}
-
-/* AI Pulse */
-@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,0.4)} 50%{box-shadow:0 0 0 6px rgba(16,185,129,0)} }
-.ai-dot { width:8px;height:8px;border-radius:50%;background:var(--success);animation:pulse 2s infinite;display:inline-block;margin-right:4px; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+.live-dot { width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse 2s infinite;margin-right:6px; }
 </style>
 </head>
 <body>
 
-<!-- Header -->
-<header class="header">
+<header>
   <div class="logo">
-    <span class="logo-icon">🐝</span>
-    <span>BeeMaster AI Development OS</span>
+    <span>⬡</span><span>BeeMaster AI Development OS</span>
     <span class="badge badge-ai">v1.0</span>
   </div>
-  <div class="stats-row">
-    <div class="stat-item">
-      <span class="ai-dot"></span>
-      <span>Modül: <span class="stat-value">18/20</span></span>
-    </div>
-    <div class="stat-item">📄 <span>Dosya: <span class="stat-value">65</span></span></div>
-    <div class="stat-item">📏 <span>Kural: <span class="stat-value">22</span></span></div>
-    <div class="stat-item">🧩 <span>Bileşen: <span class="stat-value">15</span></span></div>
-    <span class="badge badge-active">● Canlı</span>
+  <div class="stats">
+    <div class="stat"><div class="stat-val">14</div><div class="stat-label">Bölüm</div></div>
+    <div class="stat"><div class="stat-val">66</div><div class="stat-label">Dosya</div></div>
+    <div class="stat"><div class="stat-val">22</div><div class="stat-label">Kural</div></div>
+    <div class="stat"><div class="stat-val">15</div><div class="stat-label">Bileşen</div></div>
+    <span class="badge badge-live"><span class="live-dot"></span>Canlı</span>
   </div>
 </header>
 
-<main class="main">
+<main>
 
-<!-- Hero -->
 <section class="hero">
-  <h1>🐝 BeeMaster AI Development OS</h1>
-  <p>AI'lar için işletim sistemi. BeeMaster AI projesinde çalışan tüm AI agent'ların uyması gereken standartları, kuralları ve karar çerçevelerini içerir.</p>
+  <h1><span>AI'lar için İşletim Sistemi</span></h1>
+  <p>BeeMaster AI projesinde çalışan tüm AI agent'ların uyması gereken standartlar, kurallar ve karar çerçeveleri. Hermes'in Baş Yazılım Mimarı olarak çalışmasını sağlayan platform.</p>
   <div class="hero-links">
-    <a href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/00_MASTER_BLUEPRINT/BEEMASTER_CONSTITUTION.md" class="hero-link hero-link-primary" target="_blank">📜 Anayasa</a>
-    <a href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/01_DESIGN_SYSTEM/BDS.md" class="hero-link hero-link-ghost" target="_blank">🎨 Tasarım Sistemi</a>
-    <a href="https://github.com/ilkerocal/BeeMaster-AI-OS" class="hero-link hero-link-ghost" target="_blank">📁 GitHub Repo</a>
-    <a href="https://beemaster-ai.vercel.app" class="hero-link hero-link-ghost" target="_blank">🐝 BeeMaster AI App</a>
-    <a href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/.hermesrules" class="hero-link hero-link-ghost" target="_blank">📋 Kuralları Gör</a>
+    <a href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/00_MASTER_BLUEPRINT/BEEMASTER_CONSTITUTION.md" class="btn-primary" target="_blank">📜 Anayasa</a>
+    <a href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/15_HERMES/HDOS.md" class="btn-ghost" target="_blank">🧠 HDOS</a>
+    <a href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/01_DESIGN_SYSTEM/BDS.md" class="btn-ghost" target="_blank">🎨 BDS</a>
+    <a href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/02_COMPONENT_LIBRARY/BCL.md" class="btn-ghost" target="_blank">🧩 BCL</a>
+    <a href="https://beemaster-ai.vercel.app" class="btn-ghost" target="_blank">🐝 Uygulama</a>
   </div>
 </section>
 
-<!-- Constitution Banner -->
-<div style="background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(16,185,129,0.05));border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:20px;margin-bottom:24px;text-align:center">
-  <h3 style="margin:0 0 8px;font-size:1.1rem">📜 BÖLÜM 0 — BeeMaster AI Anayasası</h3>
-  <p style="margin:0;color:var(--text-secondary);font-size:0.85rem">7 değiştirilemez kural · 5 temel ilke · 5 sistem direği · Hermes Protokolü</p>
-  <div style="margin-top:12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-    <span style="background:rgba(245,158,11,0.15);color:#f59e0b;padding:3px 10px;border-radius:99px;font-size:0.7rem;font-weight:600">KURAL-0001..0007</span>
-    <span style="background:rgba(16,185,129,0.1);color:#10b981;padding:3px 10px;border-radius:99px;font-size:0.7rem;font-weight:600">Dijital İkiz</span>
-    <span style="background:rgba(59,130,246,0.1);color:#3b82f6;padding:3px 10px;border-radius:99px;font-size:0.7rem;font-weight:600">5 Temel Direk</span>
-    <span style="background:rgba(139,92,246,0.1);color:#8b5cf6;padding:3px 10px;border-radius:99px;font-size:0.7rem;font-weight:600">11 Adım Protokol</span>
-  </div>
-  <a href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/00_MASTER_BLUEPRINT/BEEMASTER_CONSTITUTION.md" target="_blank" style="display:inline-block;margin-top:12px;color:var(--amber);font-size:0.8rem;text-decoration:none;font-weight:600">📖 Anayasa'yı Oku →</a>
+<div class="timeline">
+  <div class="timeline-dot done"></div><div class="timeline-dot done"></div><div class="timeline-dot done"></div><div class="timeline-dot done"></div><div class="timeline-dot done2"></div><div class="timeline-dot done2"></div><div class="timeline-dot done2"></div><div class="timeline-dot done2"></div><div class="timeline-dot future"></div><div class="timeline-dot future"></div>
 </div>
 
-<!-- Modules -->
-<h2 class="section-title">📦 Modüller</h2>
-<p class="section-subtitle">20 modül, her biri BeeMaster AI geliştirme sürecinin bir parçasını standartlaştırır.</p>
+<div class="section">
+  <div class="section-title">📜 Temel Bölümler</div>
+  <div class="section-sub">BeeMaster AI'ın DNA'sı — değiştirilemez standartlar</div>
+  <div class="modules">
+    <a class="module constitution" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/00_MASTER_BLUEPRINT/BEEMASTER_CONSTITUTION.md" target="_blank">
+      <div class="module-num">BÖLÜM 0</div>
+      <div class="module-name"><span class="icon">📜</span>BeeMaster AI Anayasası</div>
+      <div class="module-desc">7 değiştirilemez kural, 5 temel ilke, Beş Temel Direk. Tüm sistemin temeli.</div>
+      <div class="module-tags"><span>KURAL-0001..0007</span><span>Dijital İkiz</span><span>Hermes Protokolü</span></div>
+    </a>
+    <a class="module core" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/15_HERMES/HDOS.md" target="_blank">
+      <div class="module-num">BÖLÜM 1</div>
+      <div class="module-name"><span class="icon">🧠</span>Hermes Geliştirme İşletim Sistemi</div>
+      <div class="module-desc">12 adım zorunlu döngü, 5 düşünme katmanı, Görev Raporu formatı. Hermes'in düşünme protokolü.</div>
+      <div class="module-tags"><span>HDOS</span><span>Baş Mimar</span><span>Protokol</span></div>
+    </a>
+    <a class="module design" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/01_DESIGN_SYSTEM/BDS.md" target="_blank">
+      <div class="module-num">BÖLÜM 2</div>
+      <div class="module-name"><span class="icon">🎨</span>Tasarım Sistemi</div>
+      <div class="module-desc">5 tasarım değeri, token zorunluluğu, renk-anlam eşleşmesi, 8 maddelik denetim.</div>
+      <div class="module-tags"><span>BDS</span><span>Dark Theme</span><span>Token</span></div>
+    </a>
+    <a class="module design" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/02_COMPONENT_LIBRARY/BCL.md" target="_blank">
+      <div class="module-num">BÖLÜM 3</div>
+      <div class="module-name"><span class="icon">🧩</span>UI Bileşen Kütüphanesi</div>
+      <div class="module-desc">15 COMP kimliği, 5 soruluk ekleme süreci, bileşen yaşam döngüsü. "Önce ara, sonra oluştur."</div>
+      <div class="module-tags"><span>BCL</span><span>COMP-001..015</span><span>Reusable</span></div>
+    </a>
+  </div>
+</div>
 
-<div class="module-grid" id="moduleGrid"></div>
+<div class="section">
+  <div class="section-title">💻 Geliştirme Standartları</div>
+  <div class="section-sub">Kod, mimari ve veri standartları</div>
+  <div class="modules">
+    <a class="module core" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/04_FRONTEND/FRONTEND_ARCHITECTURE.md" target="_blank">
+      <div class="module-num">BÖLÜM 4</div>
+      <div class="module-name"><span class="icon">💻</span>Frontend Mimarisi</div>
+      <div class="module-desc">Modüler dosya yapısı, 4 zorunlu sayfa sorusu, 1000 satır limiti, Service/View/Controller.</div>
+      <div class="module-tags"><span>Feature-based</span><span>Digital Twin State</span></div>
+    </a>
+    <a class="module data" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/03_ARCHITECTURE/PLATFORM_ARCHITECTURE.md" target="_blank">
+      <div class="module-num">BÖLÜM 14</div>
+      <div class="module-name"><span class="icon">🏗️</span>Platform Mimarisi</div>
+      <div class="module-desc">API Gateway, veri katmanları (Event Store, Graph DB, Vector DB), bildirim, observability, CI/CD.</div>
+      <div class="module-tags"><span>Gateway</span><span>DevOps</span><span>Scaling</span></div>
+    </a>
+    <a class="module core" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/05_BACKEND/BACKEND.md" target="_blank">
+      <div class="module-num">BÖLÜM 5</div>
+      <div class="module-name"><span class="icon">🗄️</span>Backend & Veritabanı</div>
+      <div class="module-desc">Supabase yapılandırması, auth, RLS, offline-first, PostgreSQL şema, 10 tablo.</div>
+      <div class="module-tags"><span>Supabase</span><span>PostgreSQL</span><span>RLS</span></div>
+    </a>
+  </div>
+</div>
 
-<!-- Rules -->
-<h2 class="section-title">📋 Temel Kurallar (15)</h2>
-<p class="section-subtitle">Hermes'in Baş Yazılım Mimarı olarak uyması gereken kurallar.</p>
+<div class="section">
+  <div class="section-title">👥 Dijital İkiz & Veri</div>
+  <div class="section-sub">Platformun kalbi — veri modeli ve ilişkiler</div>
+  <div class="modules">
+    <a class="module data" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/08_DIGITAL_TWIN/DIGITAL_TWIN_ARCHITECTURE.md" target="_blank">
+      <div class="module-num">BÖLÜM 5 + 17</div>
+      <div class="module-name"><span class="icon">👥</span>Dijital İkiz Mimarisi</div>
+      <div class="module-desc">16 alanlı yapı, olay tabanlı model, davranış profili, çerçeve haritası, sürüm geçmişi, karşılaştırmalı analiz.</div>
+      <div class="module-tags"><span>Digital Twin</span><span>Event Sourcing</span><span>7 KURAL</span></div>
+    </a>
+    <a class="module data" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/08_DIGITAL_TWIN/COLONY_KNOWLEDGE_GRAPH.md" target="_blank">
+      <div class="module-num">BÖLÜM 8.1</div>
+      <div class="module-name"><span class="icon">🔗</span>Koloni Bilgi Grafiği</div>
+      <div class="module-desc">16 düğüm tipi, 12 standart ilişki türü. Veriler tablo değil, ilişki ağı olarak düşünülür.</div>
+      <div class="module-tags"><span>Graph</span><span>Nodes</span><span>Edges</span></div>
+    </a>
+    <a class="module data" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/08_DIGITAL_TWIN/COLONY_ONTOLOGY.md" target="_blank">
+      <div class="module-num">BÖLÜM 8.2</div>
+      <div class="module-name"><span class="icon">📖</span>Koloni Ontolojisi</div>
+      <div class="module-desc">ENT-001..012 resmi varlık tanımları. Herkes aynı dili konuşur.</div>
+      <div class="module-tags"><span>Ontoloji</span><span>Veri Sözlüğü</span></div>
+    </a>
+    <a class="module data" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/11_API/DATA_INTEGRATION.md" target="_blank">
+      <div class="module-num">BÖLÜM 11</div>
+      <div class="module-name"><span class="icon">📡</span>Veri Entegrasyonu</div>
+      <div class="module-desc">12 veri kaynağı, IoT sensörler, medya yönetimi, senkronizasyon, veri kalite skoru.</div>
+      <div class="module-tags"><span>IoT</span><span>Mobile</span><span>Sync</span></div>
+    </a>
+  </div>
+</div>
 
-<div class="rules-grid" id="rulesGrid"></div>
+<div class="section">
+  <div class="section-title">🤖 Yapay Zekâ Motorları</div>
+  <div class="section-sub">AI karar, öğrenme ve analiz sistemleri</div>
+  <div class="modules">
+    <a class="module ai" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/07_AI_ENGINE/DECISION_ENGINE.md" target="_blank">
+      <div class="module-num">BÖLÜM 6</div>
+      <div class="module-name"><span class="icon">⚡</span>Karar Motoru</div>
+      <div class="module-desc">7 katman: Veri Kontrol → Bağlam → İlişki → Risk → Tahmin → Öneri → Öğrenme. Asla kesin hüküm vermez.</div>
+      <div class="module-tags"><span>Decision Engine</span><span>KURAL-0007</span></div>
+    </a>
+    <a class="module ai" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/09_FRAME_SCANNER/FRAME_SCANNER.md" target="_blank">
+      <div class="module-num">BÖLÜM 7 + 16</div>
+      <div class="module-name"><span class="icon">📸</span>Frame Scanner AI</div>
+      <div class="module-desc">7 adım tarama, 10 analiz motoru, hücre seviyesinde sınıflandırma, perspektif düzeltme, image stitching.</div>
+      <div class="module-tags"><span>Computer Vision</span><span>Cell Analysis</span></div>
+    </a>
+    <a class="module ai" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/07_AI_ENGINE/MULTI_AGENT_ARCHITECTURE.md" target="_blank">
+      <div class="module-num">BÖLÜM 9</div>
+      <div class="module-name"><span class="icon">🤖</span>Çoklu AI Mimarisi</div>
+      <div class="module-desc">1 Orchestrator + 10 uzman ajan. Her ajan tek sorumluluk, bağımsız güven skoru.</div>
+      <div class="module-tags"><span>Multi-Agent</span><span>AGENT-000..010</span></div>
+    </a>
+    <a class="module ai" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/07_AI_ENGINE/CONTINUOUS_LEARNING.md" target="_blank">
+      <div class="module-num">BÖLÜM 10</div>
+      <div class="module-name"><span class="icon">🧬</span>Sürekli Öğrenme</div>
+      <div class="module-desc">8 adım öğrenme döngüsü, A-E bilgi sınıflandırması, model sürümleme, performans metrikleri.</div>
+      <div class="module-tags"><span>Learning</span><span>Calibration</span></div>
+    </a>
+    <a class="module ai" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/07_AI_ENGINE/PREDICTION_ENGINE.md" target="_blank">
+      <div class="module-num">BÖLÜM 12</div>
+      <div class="module-name"><span class="icon">🔮</span>Tahmin & Simülasyon</div>
+      <div class="module-desc">"Ne olursa?" analizi, çoklu senaryo karşılaştırma, 6 zaman ufku, öğrenen simülasyon.</div>
+      <div class="module-tags"><span>Simulation</span><span>What-If</span></div>
+    </a>
+    <a class="module ai" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/07_AI_ENGINE/SCIENTIFIC_KNOWLEDGE_ENGINE.md" target="_blank">
+      <div class="module-num">BÖLÜM 13</div>
+      <div class="module-name"><span class="icon">🔬</span>Bilimsel Bilgi Motoru</div>
+      <div class="module-desc">A-E kanıt seviyeleri, bilgi nesnesi yapısı, kanıt zinciri, bölgesel adaptasyon.</div>
+      <div class="module-tags"><span>Scientific</span><span>Evidence</span></div>
+    </a>
+  </div>
+</div>
 
-<!-- Design Tokens -->
-<h2 class="section-title">🎨 Tasarım Token'ları</h2>
-<p class="section-subtitle">BeeMaster AI v6 Dark Theme renk paleti.</p>
+<div class="section">
+  <div class="section-title">📋 Operasyonel</div>
+  <div class="section-sub">Test, hata ayıklama, GitHub, kontroller</div>
+  <div class="modules">
+    <a class="module ops" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/12_TESTING/TESTING.md" target="_blank">
+      <div class="module-num">BÖLÜM 12</div>
+      <div class="module-name"><span class="icon">🧪</span>Test Stratejisi</div>
+      <div class="module-desc">Playwright E2E, visual QA protokolü, birim testleri, deploy öncesi kontrol listesi.</div>
+    </a>
+    <a class="module ops" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/14_GITHUB/GITHUB.md" target="_blank">
+      <div class="module-name"><span class="icon">🔄</span>GitHub İş Akışı</div>
+      <div class="module-desc">Branch stratejisi, commit formatı, CI/CD, Vercel deploy.</div>
+    </a>
+  </div>
+</div>
 
-<div class="token-grid" id="tokenGrid"></div>
+<div class="section">
+  <div class="section-title">🗺️ Vizyon</div>
+  <div class="section-sub">Gelecek yol haritası</div>
+  <div class="modules">
+    <a class="module vision" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/20_RELEASES/VISION_2030.md" target="_blank">
+      <div class="module-num">BÖLÜM 18</div>
+      <div class="module-name"><span class="icon">🚀</span>Vision 2030–2035</div>
+      <div class="module-desc">10 fazlı yol haritası: MVP → Otonom Arıcılık. 100.000+ Dijital İkiz hedefi.</div>
+      <div class="module-tags"><span>Roadmap</span><span>2035</span></div>
+    </a>
+    <a class="module vision" href="https://github.com/ilkerocal/BeeMaster-AI-OS/blob/main/19_CHECKLISTS/PRE_DEPLOY.md" target="_blank">
+      <div class="module-name"><span class="icon">✅</span>Deploy Kontrol Listesi</div>
+      <div class="module-desc">30 maddelik kontrol listesi. Atlanamaz.</div>
+    </a>
+  </div>
+</div>
 
 </main>
 
-<footer class="footer">
-  <p>🐝 BeeMaster AI Development OS v1.0 · <a href="https://github.com/ilkerocal/BeeMaster-AI-OS" style="color:var(--amber)" target="_blank">github.com/ilkerocal/BeeMaster-AI-OS</a></p>
-  <p style="margin-top:4px">"Kod yazmadan önce düşün. Plan yap. Onay al. Sonra uygula." — RULE-0001</p>
+<footer>
+  🐝 BeeMaster AI Development OS v1.0 · <a href="https://github.com/ilkerocal/BeeMaster-AI-OS" target="_blank">github.com/ilkerocal/BeeMaster-AI-OS</a><br>
+  <span style="color:var(--text3);font-size:0.7rem">"Kod yazmadan önce düşün. Plan yap. Onay al. Sonra uygula." — RULE-0001</span>
 </footer>
 
-<script>
-// Module Data
-const MODULES = [
-  { id:'00', name:'Master Blueprint', desc:'Şirket felsefesi, ürün vizyonu, geliştirme prensipleri, karar çerçevesi', files:5, status:'completed', icon:'🧭' },
-  { id:'01', name:'Design System', desc:'Renkler, tipografi, spacing, ikonlar, gölgeler, animasyonlar, 11 bileşen', files:20, status:'completed', icon:'🎨' },
-  { id:'02', name:'Component Library', desc:'COMP-0001..0015 — Button, Card, Modal, Hive Card, Disease Card...', files:15, status:'completed', icon:'🧩' },
-  { id:'03', name:'Architecture', desc:'Sistem mimarisi, veri akışı, state yönetimi, 4 temel mimari karar', files:2, status:'completed', icon:'🏗️' },
-  { id:'04', name:'Frontend', desc:'HTML, CSS, JS yazım standartları, PWA gereksinimleri', files:3, status:'completed', icon:'💻' },
-  { id:'05', name:'Backend', desc:'Supabase yapılandırması, auth, RLS, offline-first strateji', files:1, status:'completed', icon:'🗄️' },
-  { id:'06', name:'Database', desc:'PostgreSQL şema, 10 tablo, indexler, migration kuralları', files:1, status:'completed', icon:'🗃️' },
-  { id:'07', name:'AI Engine', desc:'Öneri sistemi, güven skorlaması, kanıt takibi', files:1, status:'completed', icon:'🤖' },
-  { id:'08', name:'Digital Twin', desc:'Dijital ikiz modeli, senkronizasyon, görselleştirme', files:0, status:'planned', icon:'👥' },
-  { id:'09', name:'Frame Scanner', desc:'Çerçeve tarayıcı, görüntü işleme, tespit modelleri', files:0, status:'planned', icon:'📸' },
-  { id:'10', name:'Disease Engine', desc:'Hastalık veritabanı, belirti denetleyici, tedavi rehberi', files:0, status:'completed', icon:'🦠' },
-  { id:'11', name:'API', desc:'REST endpointleri, auth endpointleri, hata kodları', files:0, status:'planned', icon:'🔌' },
-  { id:'12', name:'Testing', desc:'Playwright E2E, birim testleri, visual QA protokolü', files:1, status:'completed', icon:'🧪' },
-  { id:'13', name:'Debugging', desc:'Hata ayıklama stratejisi, sık hatalar, çözümler', files:1, status:'completed', icon:'🐛' },
-  { id:'14', name:'GitHub', desc:'Branch stratejisi, commit formatı, CI/CD', files:1, status:'completed', icon:'🔄' },
-  { id:'15', name:'Hermes', desc:'Hermes yapılandırması, skill rehberi, düşünme süreci', files:1, status:'completed', icon:'🧠' },
-  { id:'16', name:'Prompts', desc:'Standart prompt şablonları (feature, bug fix, deploy)', files:1, status:'completed', icon:'📝' },
-  { id:'17', name:'Skills', desc:'Hermes skill kütüphanesi ve şablonları', files:0, status:'planned', icon:'🔧' },
-  { id:'18', name:'Templates', desc:'Sayfa, modül, bileşen, skill kod şablonları', files:1, status:'completed', icon:'📐' },
-  { id:'19', name:'Checklists', desc:'Deploy öncesi/sonrası kontrol listeleri', files:1, status:'completed', icon:'✅' },
-  { id:'20', name:'Releases', desc:'Sürüm notları, changelog, yol haritası', files:1, status:'completed', icon:'📋' }
-];
-
-// Rules
-const RULES = [
-  { id:'RULE-0001', text:'Never change code immediately. Analyze first. Create a plan. Wait for approval.' },
-  { id:'RULE-0002', text:'Never create duplicate CSS. Search existing components first. Reuse if possible.' },
-  { id:'RULE-0003', text:'Never modify more than one feature in a single commit.' },
-  { id:'RULE-0004', text:'Never write HTML before checking the Design System.' },
-  { id:'RULE-0005', text:'Never invent UI. Use the Component Library.' },
-  { id:'RULE-0006', text:'Every screen must strengthen the Digital Twin.' },
-  { id:'RULE-0007', text:'Every AI recommendation must contain confidence, reasoning, evidence.' },
-  { id:'RULE-0008', text:'Always test with Playwright before declaring "done".' },
-  { id:'RULE-0009', text:'All user-facing text must be Turkish.' },
-  { id:'RULE-0010', text:'Never use sed/replace on JavaScript files.' },
-  { id:'RULE-0011', text:'Cache-bust version must increment on every deploy.' },
-  { id:'RULE-0012', text:'Never hardcode credentials.' },
-  { id:'RULE-0013', text:'Every page must work offline-first.' },
-  { id:'RULE-0014', text:'Mobile-first responsive design. Test at 375×812.' },
-  { id:'RULE-0015', text:'Never skip the Visual QA checklist before deploy.' }
-];
-
-// Colors
-const TOKENS = [
-  { name:'Base', hex:'#0B1220' },
-  { name:'Card', hex:'#131D31' },
-  { name:'Elevated', hex:'#1A2744' },
-  { name:'Hover', hex:'#1F3050' },
-  { name:'Primary', hex:'#f59e0b' },
-  { name:'Primary Dark', hex:'#d97706' },
-  { name:'Success', hex:'#10b981' },
-  { name:'Danger', hex:'#ef4444' },
-  { name:'Info', hex:'#3b82f6' },
-  { name:'Text', hex:'#E8EDF5' },
-  { name:'Text Sec.', hex:'#8895B3' },
-  { name:'Border', hex:'#1E2D4A' }
-];
-
-// Render Modules
-function renderModules() {
-  const grid = document.getElementById('moduleGrid');
-  grid.innerHTML = MODULES.map(m => `
-    <div class="module-card ${m.status}" onclick="window.open('https://github.com/ilkerocal/BeeMaster-AI-OS/tree/main/${m.id}_${m.name.replace(/ /g,'_').toUpperCase()}','_blank')" title="GitHub'da aç">
-      <div class="module-number">MODÜL ${m.id}</div>
-      <div class="module-name">
-        <span>${m.icon}</span>
-        <span>${m.name}</span>
-        <span class="status-dot ${m.status==='completed'?'green':'gray'}"></span>
-      </div>
-      <div class="module-desc">${m.desc}</div>
-      <div class="module-meta">
-        <span class="module-files">📄 ${m.files} dosya</span>
-        <span class="module-files">${m.status==='completed'?'✅ Tamamlandı':'📋 Planlandı'}</span>
-      </div>
-    </div>
-  `).join('');
-}
-
-// Render Rules
-function renderRules() {
-  document.getElementById('rulesGrid').innerHTML = RULES.map(r => `
-    <div class="rule-card">
-      <div class="rule-id">${r.id}</div>
-      <div class="rule-text">${r.text}</div>
-    </div>
-  `).join('');
-}
-
-// Render Tokens
-function renderTokens() {
-  document.getElementById('tokenGrid').innerHTML = TOKENS.map(t => `
-    <div class="token-swatch" style="background:${t.hex};color:${t.hex==='#0B1220'||t.hex==='#131D31'?'#fff':'#0B1220'}">
-      <span>${t.name}<br>${t.hex}</span>
-    </div>
-  `).join('');
-}
-
-// Init
-renderModules();
-renderRules();
-renderTokens();
-
-// Update time
-const now = new Date();
-document.querySelector('.badge-active').innerHTML = '● Canlı · ' + now.toLocaleDateString('tr-TR');
-</script>
 </body>
 </html>
