@@ -1,0 +1,202 @@
+# RULE-0001 — Never Change Code Immediately
+
+**Kural:** Kod değişikliğine başlamadan önce her zaman analiz et, plan oluştur, onay bekle.
+
+**Neden:** Plansız değişiklikler yan etkilere, regresyona ve teknik borca yol açar. Her değişiklik bir zincirleme reaksiyon başlatabilir.
+
+**Uygulama:**
+1. Önce mevcut kodu oku ve anla
+2. Etkilenecek tüm dosyaları belirle
+3. Bir plan yaz (`.hermes/plans/`)
+4. Kullanıcıdan onay al
+5. Plan adımlarını sırayla uygula
+
+**İhlal Örneği:**
+```
+User: "Buton rengini kırmızı yap"
+Hermes: [hemen CSS değiştirir] ❌ YANLIŞ
+```
+
+**Doğru Uygulama:**
+```
+User: "Buton rengini kırmızı yap"
+Hermes: 
+  1. Tasarım sistemini kontrol eder
+  2. Hangi butonların etkileneceğini listeler  
+  3. Değişiklik planını sunar
+  4. Onay bekler
+  5. Uygular ✓
+```
+
+---
+
+# RULE-0002 — Never Create Duplicate CSS
+
+**Kural:** Yeni CSS yazmadan önce mevcut bileşenleri ve stilleri ara. Varsa yeniden kullan.
+
+**Neden:** Duplike CSS, tutarsız görünüme ve bakım kabusuna yol açar. Tasarım sistemi tek kaynaktır.
+
+**Uygulama:**
+1. İhtiyacını tanımla (buton, kart, modal...)
+2. `02_COMPONENT_LIBRARY/` içinde ara
+3. `01_DESIGN_SYSTEM/` içinde token'ları kontrol et
+4. Mevcut bileşeni kullan veya genişlet
+5. Sadece gerçekten yeni bir şeyse yeni CSS yaz
+
+---
+
+# RULE-0003 — One Feature Per Commit
+
+**Kural:** Her commit sadece bir özellik veya düzeltme içermeli.
+
+**Neden:** Atomic commit'ler geri almayı, code review'u ve hata takibini kolaylaştırır.
+
+**Commit mesaj formatı:**
+```
+<type>: <kısa açıklama>
+
+<detaylı açıklama>
+```
+
+**Type'lar:** `feat`, `fix`, `style`, `refactor`, `test`, `docs`, `chore`
+
+---
+
+# RULE-0004 — Check Design System Before Writing HTML
+
+**Kural:** HTML yazmadan önce `01_DESIGN_SYSTEM/` dizinindeki ilgili dokümanları kontrol et.
+
+**Uygulama:**
+1. Hangi sayfa/bileşen yapılacak?
+2. `01_DESIGN_SYSTEM/COMPONENTS/` altında ilgili bileşeni bul
+3. Renk, boşluk, tipografi token'larını kullan
+4. HTML'i token'lara göre yaz
+
+---
+
+# RULE-0005 — Use Component Library, Never Invent UI
+
+**Kural:** Her UI parçası `02_COMPONENT_LIBRARY/` içinde tanımlı olmalı. Yeni bir UI icat etme.
+
+**Neden:** Bileşen kütüphanesi tutarlılığı garanti eder. İcat edilen UI'lar design system'dan kopar.
+
+**Eğer bileşen yoksa:**
+1. Önce bileşeni `02_COMPONENT_LIBRARY/` içinde tanımla
+2. Tasarım token'larını kullan
+3. Dokümante et
+4. Sonra kullan
+
+---
+
+# RULE-0006 — Every Screen Must Strengthen the Digital Twin
+
+**Kural:** Her ekran, arıcının dijital ikizini güçlendirmeli. Veri girişi, görselleştirme veya AI içgörüsü sunmalı.
+
+**Dijital İkiz prensibi:** Her arı kovanının, her çerçevenin, her kraliçenin dijital bir kopyası olmalı. Kullanıcı bu kopyayı ne kadar doğru beslerse, AI o kadar iyi öneriler sunar.
+
+---
+
+# RULE-0007 — AI Recommendations Must Have Confidence, Reasoning, Evidence
+
+**Kural:** Her AI önerisi şu üç bileşeni içermeli:
+- **Confidence** (güven skoru): % olarak
+- **Reasoning** (gerekçe): AI neden bu öneriyi yapıyor
+- **Evidence** (kanıt): Hangi verilere dayanarak
+
+**Format:**
+```
+╔══════════════════════════════════╗
+║  ⬡ AI ÖNERİSİ                    ║
+║  Güven: %87                      ║
+║  Gerekçe: Son 3 muayenede        ║
+║  varroa sayısı artıyor           ║
+║  Kanıt: Muayene #42, #45, #48   ║
+╚══════════════════════════════════╝
+```
+
+---
+
+# RULE-0008 — Always Test With Playwright Before "Done"
+
+**Kural:** "Tamam" demeden önce Playwright ile gerçek tarayıcıda test et. Curl/HEAD yeterli değil.
+
+**Minimum test:**
+1. Sayfa yükleniyor (networkidle)
+2. Console'da 0 hata
+3. Temel etkileşimler çalışıyor
+4. Mobil görünüm (375×812)
+5. Screenshot al
+
+---
+
+# RULE-0009 — All User-Facing Text Must Be Turkish
+
+**Kural:** Kullanıcının gördüğü tüm metinler Türkçe olmalı. İngilizce UI kabul edilmez.
+
+**İstisnalar:** Kod değişkenleri, API endpoint'leri, hata kodları İngilizce kalabilir.
+
+---
+
+# RULE-0010 — Never Use Sed/Replace on JavaScript Files
+
+**Kural:** JavaScript dosyalarında asla `sed` veya regex-based replace kullanma. Değişken isimleri, fonksiyon referansları bozulabilir.
+
+**Doğru yöntem:** Hedefli `patch` aracı ile tam string eşleştirme, veya Python script ile kontrollü değişiklik.
+
+---
+
+# RULE-0011 — Increment Cache-Bust Version on Every Deploy
+
+**Kural:** Her deploy'da `?v=N` cache-bust parametresini artır. Eski değer tarayıcıda kalır.
+
+**Uygulama:**
+```html
+<!-- index.html -->
+<script src="js/app.bundle.js?v=42"></script>  <!-- 41 → 42 -->
+```
+
+---
+
+# RULE-0012 — Never Hardcode Credentials
+
+**Kural:** Token, API key, şifre asla kod içinde hardcode edilmez.
+
+**İzin verilen:** Supabase anon key (RLS ile korunduğu için client bundle'da olabilir).
+
+---
+
+# RULE-0013 — Every Page Must Work Offline-First
+
+**Kural:** Tüm sayfalar internet bağlantısı olmadan çalışmalı. Supabase yoksa localStorage'a düş.
+
+**Mimari:**
+```js
+const isCloud = await checkConnection();
+const db = isCloud ? supabaseClient : localStorageClient;
+```
+
+---
+
+# RULE-0014 — Mobile-First Responsive Design
+
+**Kural:** Önce mobil (375×812) için tasarla, sonra masaüstüne genişlet. Her sayfa her iki boyutta da test edilmeli.
+
+**Breakpoint'ler:**
+- Mobile: 375px — 640px
+- Tablet: 641px — 1024px
+- Desktop: 1025px+
+
+---
+
+# RULE-0015 — Never Skip Visual QA Checklist
+
+**Kural:** Deploy öncesi `19_CHECKLISTS/VISUAL_QA.md` kontrol listesini eksiksiz uygula.
+
+**Minimum kontroller:**
+- [ ] Tüm sayfalar yükleniyor
+- [ ] Renkler design system'a uygun
+- [ ] Metinler Türkçe
+- [ ] Mobil görünüm düzgün
+- [ ] Console hatası yok
+- [ ] Formlar çalışıyor
+- [ ] Modal'lar açılıp kapanıyor

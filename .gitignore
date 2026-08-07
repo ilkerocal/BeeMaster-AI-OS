@@ -1,0 +1,7 @@
+# BDAOS — Git Ignore
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.hermes/plans/
