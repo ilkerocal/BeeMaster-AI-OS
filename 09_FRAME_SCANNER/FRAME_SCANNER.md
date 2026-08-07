@@ -252,6 +252,42 @@ Her tarama sonunda standart bir rapor oluşturulur:
 
 ---
 
+## 7.12A Otomatik Perspektif Düzeltme
+
+Çerçeve tam karşıdan çekilmemiş olabilir. AI; köşeleri bulur, eğriliği düzeltir, standart ölçüye getirir. Böylece farklı zamanlarda çekilen görüntüler karşılaştırılabilir (Bölüm 7.8).
+
+## 7.12B Alan Hesaplama
+
+AI otomatik olarak hücre sınıflandırmasından yüzde hesaplar:
+
+| Kategori | Örnek |
+|----------|-------|
+| Bal | %41 |
+| Polen | %12 |
+| Açık Yavru | %18 |
+| Kapalı Yavru | %22 |
+| Boş | %7 |
+
+Bu hesaplamalar standartlaştırılmış yöntemlerle yapılır. Her taramada yeniden hesaplanır.
+
+## 7.12C Ana Arı Memesi Analizi
+
+Sistem; açık meme, kapalı meme, yüksük, acil durum memesi gibi yapıları işaretleyebilir. **Bu analiz, kullanıcı doğrulaması ile birlikte değerlendirilmelidir.** (Bölüm 6.13: İnsan Kontrolü)
+
+## 7.12D Erkek Arı Gözleri
+
+AI erkek arı gözlerini sınıflandırabilir. Böylece; erkek arı oranı, dağılımı, zaman içindeki değişimi takip edilebilir. Bu veri oğul riski tahminine katkı sağlar.
+
+## 7.12E Çoklu Görüntü Birleştirme (Image Stitching)
+
+Bir çerçeve tek kareye sığmıyorsa, AI birden fazla fotoğrafı birleştirerek yüksek çözünürlüklü tek görüntü oluşturabilir. Bu özellik özellikle profesyonel kameralar için tasarlanır.
+
+## 7.12F Sürekli Öğrenme (Kullanıcı Düzeltmeleri)
+
+Kullanıcı düzeltmeleri değerlidir (KURAL-0004). Örnek: AI "Polen" olarak sınıflandırır, kullanıcı "Hayır, bu bal" der. Bu bilgi doğrudan modeli değiştirmez. Ancak doğrulama sürecine aday veri olarak kaydedilir (Bölüm 10.5: Öğrenme Döngüsü).
+
+---
+
 ## 7.13 Dijital İkiz Güncellemesi
 
 Tarama tamamlandıktan sonra:
