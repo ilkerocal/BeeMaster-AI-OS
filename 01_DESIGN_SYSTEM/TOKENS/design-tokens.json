@@ -1,0 +1,145 @@
+{
+  "name": "BeeMaster AI Design Tokens",
+  "version": "6.0.0",
+  "description": "CSS custom properties için tasarım token'ları",
+  
+  "colors": {
+    "bg": {
+      "base": { "value": "#0B1220", "css": "--color-bg-base" },
+      "card": { "value": "#131D31", "css": "--color-bg-card" },
+      "elevated": { "value": "#1A2744", "css": "--color-bg-elevated" },
+      "hover": { "value": "#1F3050", "css": "--color-bg-hover" },
+      "input": { "value": "#0D1525", "css": "--color-bg-input" },
+      "sidebar": { "value": "#0A1120", "css": "--color-bg-sidebar" }
+    },
+    "text": {
+      "primary": { "value": "#E8EDF5", "css": "--color-text-primary" },
+      "secondary": { "value": "#8895B3", "css": "--color-text-secondary" },
+      "tertiary": { "value": "#5A6785", "css": "--color-text-tertiary" },
+      "inverse": { "value": "#0B1220", "css": "--color-text-inverse" }
+    },
+    "primary": {
+      "default": { "value": "#f59e0b", "css": "--color-primary" },
+      "light": { "value": "#fbbf24", "css": "--color-primary-light" },
+      "dark": { "value": "#d97706", "css": "--color-primary-dark" },
+      "glow": { "value": "rgba(245,158,11,0.15)", "css": "--color-primary-glow" },
+      "subtle": { "value": "rgba(245,158,11,0.08)", "css": "--color-primary-subtle" }
+    },
+    "semantic": {
+      "success": { "value": "#10b981", "css": "--color-success" },
+      "successSubtle": { "value": "rgba(16,185,129,0.12)", "css": "--color-success-subtle" },
+      "warning": { "value": "#f59e0b", "css": "--color-warning" },
+      "warningSubtle": { "value": "rgba(245,158,11,0.12)", "css": "--color-warning-subtle" },
+      "danger": { "value": "#ef4444", "css": "--color-danger" },
+      "dangerSubtle": { "value": "rgba(239,68,68,0.12)", "css": "--color-danger-subtle" },
+      "info": { "value": "#3b82f6", "css": "--color-info" },
+      "infoSubtle": { "value": "rgba(59,130,246,0.12)", "css": "--color-info-subtle" }
+    },
+    "border": {
+      "default": { "value": "#1E2D4A", "css": "--color-border" },
+      "light": { "value": "#253355", "css": "--color-border-light" },
+      "focus": { "value": "#f59e0b", "css": "--color-border-focus" }
+    }
+  },
+  
+  "typography": {
+    "fontFamily": {
+      "sans": { "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" },
+      "mono": { "value": "'SF Mono', 'Fira Code', Consolas, monospace" }
+    },
+    "size": {
+      "xs": { "value": "0.75rem", "css": "--text-xs", "px": 12 },
+      "sm": { "value": "0.875rem", "css": "--text-sm", "px": 14 },
+      "base": { "value": "1rem", "css": "--text-base", "px": 16 },
+      "lg": { "value": "1.125rem", "css": "--text-lg", "px": 18 },
+      "xl": { "value": "1.25rem", "css": "--text-xl", "px": 20 },
+      "2xl": { "value": "1.5rem", "css": "--text-2xl", "px": 24 },
+      "3xl": { "value": "1.875rem", "css": "--text-3xl", "px": 30 },
+      "4xl": { "value": "2.25rem", "css": "--text-4xl", "px": 36 }
+    },
+    "weight": {
+      "normal": { "value": 400, "css": "--font-normal" },
+      "medium": { "value": 500, "css": "--font-medium" },
+      "semibold": { "value": 600, "css": "--font-semibold" },
+      "bold": { "value": 700, "css": "--font-bold" },
+      "extrabold": { "value": 800, "css": "--font-extrabold" }
+    },
+    "lineHeight": {
+      "tight": { "value": 1.25 },
+      "normal": { "value": 1.5 },
+      "relaxed": { "value": 1.75 }
+    }
+  },
+  
+  "spacing": {
+    "0": { "value": "0", "css": "--space-0" },
+    "1": { "value": "4px", "css": "--space-1" },
+    "2": { "value": "8px", "css": "--space-2" },
+    "3": { "value": "12px", "css": "--space-3" },
+    "4": { "value": "16px", "css": "--space-4" },
+    "5": { "value": "20px", "css": "--space-5" },
+    "6": { "value": "24px", "css": "--space-6" },
+    "8": { "value": "32px", "css": "--space-8" },
+    "10": { "value": "40px", "css": "--space-10" },
+    "12": { "value": "48px", "css": "--space-12" },
+    "16": { "value": "64px", "css": "--space-16" }
+  },
+  
+  "radius": {
+    "none": { "value": "0", "css": "--radius-none" },
+    "sm": { "value": "4px", "css": "--radius-sm" },
+    "md": { "value": "8px", "css": "--radius-md" },
+    "lg": { "value": "12px", "css": "--radius-lg" },
+    "xl": { "value": "16px", "css": "--radius-xl" },
+    "2xl": { "value": "24px", "css": "--radius-2xl" },
+    "full": { "value": "9999px", "css": "--radius-full" }
+  },
+  
+  "shadows": {
+    "sm": { "value": "0 1px 3px rgba(0,0,0,0.3)", "css": "--shadow-sm" },
+    "md": { "value": "0 4px 12px rgba(0,0,0,0.25)", "css": "--shadow-md" },
+    "lg": { "value": "0 8px 24px rgba(0,0,0,0.3)", "css": "--shadow-lg" },
+    "xl": { "value": "0 12px 36px rgba(0,0,0,0.35)", "css": "--shadow-xl" },
+    "2xl": { "value": "0 20px 48px rgba(0,0,0,0.4)", "css": "--shadow-2xl" }
+  },
+  
+  "glow": {
+    "subtle": { "value": "0 0 12px rgba(245,158,11,0.08)", "css": "--glow-subtle" },
+    "soft": { "value": "0 0 20px rgba(245,158,11,0.15)", "css": "--glow-soft" },
+    "medium": { "value": "0 0 30px rgba(245,158,11,0.2)", "css": "--glow-medium" },
+    "strong": { "value": "0 0 40px rgba(245,158,11,0.25)", "css": "--glow-strong" }
+  },
+  
+  "animation": {
+    "duration": {
+      "instant": { "value": "100ms", "css": "--duration-instant" },
+      "fast": { "value": "200ms", "css": "--duration-fast" },
+      "normal": { "value": "300ms", "css": "--duration-normal" },
+      "slow": { "value": "500ms", "css": "--duration-slow" }
+    },
+    "easing": {
+      "default": { "value": "cubic-bezier(0.4, 0, 0.2, 1)", "css": "--ease-default" },
+      "in": { "value": "cubic-bezier(0.4, 0, 1, 1)", "css": "--ease-in" },
+      "out": { "value": "cubic-bezier(0, 0, 0.2, 1)", "css": "--ease-out" }
+    }
+  },
+  
+  "zIndex": {
+    "dropdown": { "value": 100, "css": "--z-dropdown" },
+    "sticky": { "value": 150, "css": "--z-sticky" },
+    "sidebar": { "value": 200, "css": "--z-sidebar" },
+    "overlay": { "value": 300, "css": "--z-overlay" },
+    "modal": { "value": 400, "css": "--z-modal" },
+    "toast": { "value": 500, "css": "--z-toast" }
+  },
+  
+  "breakpoints": {
+    "mobile": { "value": "375px" },
+    "tablet": { "value": "641px" },
+    "desktop": { "value": "1025px" }
+  },
+  
+  "sidebar": {
+    "width": { "value": "260px", "css": "--sidebar-width" }
+  }
+}
