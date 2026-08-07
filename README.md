@@ -40,7 +40,7 @@ BDAOS bunu çözer:
 
 | Dizin | İçerik |
 |-------|--------|
-| `00_MASTER_BLUEPRINT/` | Şirket felsefesi, ürün vizyonu, geliştirme prensipleri |
+| `00_MASTER_BLUEPRINT/` | **📜 Anayasa**, şirket felsefesi, ürün vizyonu, geliştirme prensipleri |
 | `01_DESIGN_SYSTEM/` | Renkler, tipografi, bileşen tasarımları |
 | `02_COMPONENT_LIBRARY/` | Bileşen kod şablonları ve kullanım kuralları |
 | `03_ARCHITECTURE/` | Sistem mimarisi, veri akışı, state yönetimi |

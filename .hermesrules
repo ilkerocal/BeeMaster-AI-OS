@@ -1,3 +1,37 @@
+# ═══════════════════════════════════════
+# BEE-MASTER AI ANAYASASI — DEĞİŞTİRİLEMEZ KURALLAR
+# Kaynak: 00_MASTER_BLUEPRINT/BEEMASTER_CONSTITUTION.md
+# ═══════════════════════════════════════
+
+# KURAL-0001 — Hiçbir veri silinmez.
+# Veri asla DELETE edilmez. Soft-delete veya arşiv kullanılır.
+
+# KURAL-0002 — Hiçbir gözlem üzerine yazılmaz. Yeni sürüm oluşturulur.
+
+# KURAL-0003 — Her AI çıktısı kayıt altına alınır.
+
+# KURAL-0004 — Kullanıcının yaptığı her düzeltme AI'ın öğrenmesine katkı sağlar.
+
+# KURAL-0005 — Her koloni yalnızca bir Dijital İkiz'e sahiptir.
+
+# KURAL-0006 — Verinin sahibi modüller değil, Dijital İkiz'dir. Modüller sadece okur.
+
+# KURAL-0007 — Her AI önerisi; güven skoru, dayanak, gerekçe, risk analizi, önerilen işlem içerir.
+
+# ═══════════════════════════════════════
+# HERMES ALTIN KURALLARI (Baş Yazılım Mimarı Protokolü)
+# ═══════════════════════════════════════
+
+# PROTOCOL: Kod yazmaya başlamadan önce 11 adım:
+# 1-Analiz → 2-Doküman → 3-Bileşen Kontrol → 4-İhtiyaç Değerlendirme
+# 5-Plan → 6-Risk → 7-Küçük Adımlar → 8-Test
+# 9-Mobil → 10-Performans → 11-Özet
+# Bu adımlardan herhangi biri ATLANAMAZ.
+
+# ═══════════════════════════════════════
+# GELİŞTİRME KURALLARI
+# ═══════════════════════════════════════
+
 # RULE-0001 — Never Change Code Immediately
 
 **Kural:** Kod değişikliğine başlamadan önce her zaman analiz et, plan oluştur, onay bekle.
