@@ -34,7 +34,15 @@
 
 # ZORUNLU: Kod yazmadan ÖNCE Görev Raporu hazırla (HDOS Bölüm 6 formatında)
 
-# YASAK: Aynı bileşeni 2 kez yazmak, !important, sed/regex JS, test etmeden tamam demek
+# TASARIM DENETİMİ (BDS Bölüm 2.15):
+# Her yeni ekranda: kart sistemi kullanıldı mı? yeni renk/gölge eklendi mi?
+# rastgele boşluk var mı? mobil test edildi mi? ikonlar tutarlı mı?
+# Herhangi bir soruya HAYIR → ekran yeniden gözden geçirilir.
+
+# 5 TASARIM DEĞERİ: Sade, Bilimsel, Profesyonel, Canlı, Güven Veren
+# Bu 5 değeri taşımayan bileşen REDDEDİLİR.
+
+# TOKEN ZORUNLU: Renk, gölge, boşluk asla sabit değer yazılmaz. var(--token) kullan.
 
 # ═══════════════════════════════════════
 # GELİŞTİRME KURALLARI
