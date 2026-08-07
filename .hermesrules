@@ -65,6 +65,12 @@
 # ASLA kesin hüküm vermez. Düşük veri = düşük güven. Karar arıcınındır.
 # Yetersiz/çelişkili veride karar ÜRETMEZ. Kullanıcıdan ek bilgi ister.
 
+# FRAME SCANNER (Bölüm 7):
+# En kritik veri giriş modülü. 7 adım zorunlu iş akışı.
+# 10 paralel analiz motoru. Hücre seviyesinde sınıflandırma.
+# Kalite düşükse analiz ETME, yeniden çekim iste. Düşük kalite = düşük güven.
+# Hastalık TEŞHİSİ koymaz, sadece bulgu TESPİT eder. Kararı Karar Motoru verir.
+
 # ═══════════════════════════════════════
 # GELİŞTİRME KURALLARI
 # ═══════════════════════════════════════
