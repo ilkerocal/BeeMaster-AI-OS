@@ -71,6 +71,11 @@
 # Kalite düşükse analiz ETME, yeniden çekim iste. Düşük kalite = düşük güven.
 # Hastalık TEŞHİSİ koymaz, sadece bulgu TESPİT eder. Kararı Karar Motoru verir.
 
+# BİLGİ GRAFİĞİ (Bölüm 8):
+# Veriler tablo değil, ilişki ağı olarak düşünülür. 12 standart ilişki tipi.
+# Her ilişki zaman damgası taşır. Korelasyon ≠ Nedensellik.
+# Dijital İkiz + Bilgi Grafiği + Karar Motoru + Frame Scanner = tek sistem.
+
 # ═══════════════════════════════════════
 # GELİŞTİRME KURALLARI
 # ═══════════════════════════════════════
